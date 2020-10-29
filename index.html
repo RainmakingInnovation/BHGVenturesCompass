@@ -1424,10 +1424,6 @@
               </button>
               <div class="dropdown-content" id="client-selector"></div>
           </div>
-               <div class="alt-checkbox alt-checkbox-eu">
-                <i class="far fa-square fa-lg"></i>
-                EU Only
-              </div>
           <div id="save-button-container">
             <button class="switch-button" id="save-button">Save Image</button>
           </div>
@@ -1666,12 +1662,12 @@
             });
 
             data = data.filter(function(d) {
-              return +d["Founded"] > 2004;
+              return d["Maturity"] !== "";
             });
 
-            data.forEach(function(v) {
-                v["Maturity"] = "Emerging"
-            })
+            data = data.filter(function(d) {
+              return +d["Founded"] > 2004;
+            });
 
             console.log('data', data)
 
