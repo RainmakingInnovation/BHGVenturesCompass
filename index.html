@@ -5580,7 +5580,7 @@
 
               d3.select(".node-tooltip-title").text(d["Name"]);
               d3.select(".node-tooltip-funding").text("Total Funding: " + (fundingVal));
-              d3.select(".node-tooltip-description").text(d["Service / Product Description"].replace(/�۪/g, "'"));
+              d3.select(".node-tooltip-description").text(d["Description"].replace(/�۪/g, "'"));
 
               d3.select(".node-tooltip")
               .style("opacity", 1);
