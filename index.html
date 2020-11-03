@@ -5030,7 +5030,7 @@
           function update_visibility() {
               nodes.style("visibility", function(d) {
                 var visibility = "visible"
-                if (eu == false && d["Location"] == "Europe") {
+                if (eu == false && d["Location"] == "Global") {
                   visibility = "hidden"
                 }
                 return visibility
@@ -5038,7 +5038,7 @@
 
               nodes_acquired.style("visibility", function(d) {
                 var visibility = "visible"
-                if (eu == false && d["Location"] == "Europe") {
+                if (eu == false && d["Location"] == "Global") {
                   visibility = "hidden"
                 }
                 return visibility
