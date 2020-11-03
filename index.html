@@ -1670,7 +1670,7 @@
             });
 
             data = data.filter(function(d) {
-              return +d["Founded"] > 2004;
+              return +d["Founded"] > 2015;
             });
 
             console.log('data', data)
@@ -4030,14 +4030,12 @@
                 switchRadial();
               });
               d3.select("#button-17").on("change", function() {
-                if (geoFilter === "All Startups") {
-                  filters.geotype = "African"
-                  update_opacity()
-                  geoFilter = "African"
+                if (eu == true) {
+                  eu = false
+                  update_visibility()
                 } else {
-                  filters.geotype = "All Startups"
-                  update_opacity()
-                  geoFilter = "All Startups"
+                  eu = true
+                  update_visibility()
                 }
               });
   
@@ -5032,7 +5030,7 @@
           function update_visibility() {
               nodes.style("visibility", function(d) {
                 var visibility = "visible"
-                if (eu == false && d["EU"] == "N") {
+                if (eu == false && d["Location"] == "Europe") {
                   visibility = "hidden"
                 }
                 return visibility
@@ -5040,7 +5038,7 @@
 
               nodes_acquired.style("visibility", function(d) {
                 var visibility = "visible"
-                if (eu == false && d["EU"] == "N") {
+                if (eu == false && d["Location"] == "Europe") {
                   visibility = "hidden"
                 }
                 return visibility
