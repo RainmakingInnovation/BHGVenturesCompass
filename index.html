@@ -1113,6 +1113,18 @@
     position: relative;
   }
 
+  .analysis-container {
+    display: none;
+    position: relative;
+    left: 146px;
+  }
+
+  .air-table-container {
+    display: none;
+    position: relative;
+    left: 146px;
+  }
+
   .tick > line {
     stroke: lightgrey;
     stroke-opacity: 1;
@@ -1364,14 +1376,20 @@
       <div class="left-sidebar-buttons">
         <div id="radar-toggle-btn" class="left-sidebar-btn">
         <div class="left-sidebar-btn-label">Compass</div>
-        <i class="fas fa-bullseye fa-lg"></i>
-        
+        <i class="fas fa-bullseye fa-lg"></i>  
+      </div>
+        <div id="analysis-toggle-btn" class="left-sidebar-btn">
+          <div class="left-sidebar-btn-label">Analysis</div>
+          <i class="fas fa-chart-line fa-lg"></i>
         </div>
-        <div id="map-toggle-btn" class="left-sidebar-btn">
+        <div id="air-table-toggle-btn" class="left-sidebar-btn">
+          <div class="left-sidebar-btn-label">Database</div>
+          <i class="fas fa-table fa-lg"></i>
+        </div>      
+      <div id="map-toggle-btn" class="left-sidebar-btn">
         <div class="left-sidebar-btn-label">Map</div>
         <i class="far fa-map fa-lg"></i>
-        
-        </div>
+      </div>
       </div>
     </div>
 
@@ -1389,6 +1407,12 @@
       <div id="ostt-8" class="opp-space-tooltip-item bold"></div>
       <div id="ostt-9" class="opp-space-tooltip-item"></div>
     </div>
+  </div>
+  <div class="analysis-container">
+    <iframe src="https://datastudio.google.com/embed/reporting/2584ae69-c07c-4329-95b7-a4ba9a89c206/page/Bk5TB" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+  <div class="air-table-container">
+<iframe class="airtable-embed" src="https://airtable.com/embed/shrZ4hoHW4rluqYCI?backgroundColor=red&viewControls=on" frameborder="0" onmousewheel="" tyle="background: transparent; border: 1px solid #ccc;" allowfullscreen></iframe>
   </div>
     <div class="map-container">
       <div class="sidebar">
@@ -1719,6 +1743,8 @@
   
               d3.select("#radar-toggle-btn").on("click", function() {
                 d3.select("#map-toggle-btn").attr("class", "left-sidebar-btn")
+                d3.select("#analysis-toggle-btn").attr("class", "left-sidebar-btn")
+                d3.select("#air-table-toggle-btn").attr("class", "left-sidebar-btn")
                 d3.select("#radar-toggle-btn").attr("class", "left-sidebar-btn active")
                 d3.select("body").style("background-color", "white")
                 toggle_map("off");
@@ -3837,7 +3863,6 @@
                     break;
                   }
                 }
-                console.log(d["Maturity"])
                 for (i = 0; i < nodeData.length; i++) {
                   if (nodeData[i].key === d["Focus Area"]) {
                     for (j = 0; j < nodeData[i].values.length; j++) {
@@ -6124,6 +6149,8 @@
                     d3.select("#control-container").style("display", "none")
                     d3.select("#hover-info-container").style("display", "none")
                     d3.select("#save-button-container").style("display", "none")
+                    d3.select(".analysis-container").style("display", "none")
+                    d3.select(".air-table-container").style("display", "none")
                      map.invalidateSize()
                 } else {
                   d3.select(".map-container").style("display", "none")
@@ -6133,6 +6160,8 @@
                     d3.select("#control-container").style("display", "")
                     d3.select("#hover-info-container").style("display", "")
                     d3.select("#save-button-container").style("display", "")
+                    d3.select(".analysis-container").style("display", "none")
+                    d3.select(".air-table-container").style("display", "none")
                 }
             }
 
@@ -6141,9 +6170,49 @@
                 d3.select(".popup-bg").style("display", "none")
                 d3.select(".svg-bar-container").html("")
             })
+
+            d3.select("#air-table-toggle-btn").on("click", function() {
+                d3.select("#map-toggle-btn").attr("class", "left-sidebar-btn")
+                d3.select("#analysis-toggle-btn").attr("class", "left-sidebar-btn")
+                d3.select("#radar-toggle-btn").attr("class", "left-sidebar-btn")
+                d3.select("#air-table-toggle-btn").attr("class", "left-sidebar-btn active")
+                d3.select("body").style("background-color", "#F4F4F4")    
+
+                d3.select(".map-container").style("display", "none")
+                d3.select(".map-tooltip").style("display", "none");
+                d3.select("#chart-container").style("display", "none")
+                d3.select("#key-container").style("display", "none")
+                d3.select("#control-container").style("display", "none")
+                d3.select("#hover-info-container").style("display", "none")
+                d3.select("#save-button-container").style("display", "none")
+                d3.select(".air-table-container").style("display", "block")
+                d3.select(".air-table-container").select("iframe").attr("width", window.innerWidth - 146).attr("height", window.innerHeight)
+                d3.select(".analysis-container").style("display", "none")         
+            })
+
+              d3.select("#analysis-toggle-btn").on("click", function() {
+                d3.select("#map-toggle-btn").attr("class", "left-sidebar-btn")
+                d3.select("#analysis-toggle-btn").attr("class", "left-sidebar-btn active")
+                d3.select("#radar-toggle-btn").attr("class", "left-sidebar-btn")
+                d3.select("#air-table-toggle-btn").attr("class", "left-sidebar-btn")
+                d3.select("body").style("background-color", "#F4F4F4")
+               
+                  d3.select(".map-container").style("display", "none")
+                  d3.select(".map-tooltip").style("display", "none");
+                    d3.select("#chart-container").style("display", "none")
+                    d3.select("#key-container").style("display", "none")
+                    d3.select("#control-container").style("display", "none")
+                    d3.select("#hover-info-container").style("display", "none")
+                    d3.select("#save-button-container").style("display", "none")
+                    d3.select(".air-table-container").style("display", "none")
+                    d3.select(".analysis-container").style("display", "block")
+                    d3.select(".analysis-container").select("iframe").attr("width", window.innerWidth - 146).attr("height", window.innerHeight)
+            })
   
             d3.select("#map-toggle-btn").on("click", function() {
                 d3.select("#map-toggle-btn").attr("class", "left-sidebar-btn active")
+                d3.select("#analysis-toggle-btn").attr("class", "left-sidebar-btn")
+                d3.select("#air-table-toggle-btn").attr("class", "left-sidebar-btn")
                 d3.select("#radar-toggle-btn").attr("class", "left-sidebar-btn")
                 d3.select("body").style("background-color", "#F4F4F4")
                
@@ -6579,7 +6648,7 @@
                 distanceCheck = 1;
               }
             }
-            if (distanceCheck === 1) {
+            if (distanceCheck === 'x') {
               return assignRandom(
                 tmp_startAngleMin,
                 tmp_endAngleMax,
