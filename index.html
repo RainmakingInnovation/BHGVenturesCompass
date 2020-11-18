@@ -1593,7 +1593,7 @@
           .style("display", "none")
   
         d3.csv(
-          "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vReNDA6nTsDbV3NW13RyfG8lu2kB2pZpEmd0GtD4EzfJD9FcIvqsEarzisQKQ_W26-YyZR7__KwyNfY/pub?gid=2012818018&single=true&output=csv"
+          "BHG Project Hub - Startup Bank.csv"
         ).then(function(data) {
           d3.csv(
           "EduardoData - EngieRadar-Definitions.csv"
@@ -1676,6 +1676,8 @@
             data = data.filter(function(d) {
               return filteredCountries.indexOf(d["Location"]) < 0
             })*/
+
+            console.log('data',data)
 
             data = data.filter(function(d) {
               return d["Inc. Radar"] == "TRUE";
