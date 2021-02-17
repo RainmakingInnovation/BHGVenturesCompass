@@ -479,7 +479,8 @@
         z-index: 1;
       }
 
-        #button-17,
+      #button-18,
+      #button-17,
       #button-16 {
         display: none;
       }
@@ -524,12 +525,39 @@
           left 0.8s cubic-bezier(0.18, 0.89, 0.35, 1.15);
       }
 
+      #button-18 .knobs:before {
+        content: "Priority Opportunity Spaces";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 60px;
+        height: 10px;
+        color: #fff;
+        font-size: 10px;
+        font-family: "Graphik Regular";
+        font-weight: bold;
+        text-align: center;
+        line-height: 1;
+        padding: 9px 4px;
+        background-color: #ec4d46;
+        border-radius: 2px;
+        transition: 0.8s ease all,
+          left 0.8s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+      }
+
       #button-17 .checkbox:checked + .knobs:before {
         content: "Europe";
         left: 56px;
         background-color: #2b2a56;
       }
 
+      #button-18 .checkbox:checked + .knobs:before {
+        content: "Focus Areas";
+        left: 56px;
+        background-color: #2b2a56;
+      }
+
+      #button-18 .checkbox:active + .knobs:before,
       #button-17 .checkbox:active + .knobs:before,
       #button-16 .checkbox:active + .knobs:before {
         width: 46px;
@@ -544,12 +572,19 @@
         margin-left: -26px;
       }
 
+        #button-18
+        .checkbox:checked:active
+        + .knobs:before {
+        margin-left: -26px;
+      }
+
       #button-16 .checkbox:checked + .knobs:before {
         content: "Maturity";
         left: 56px;
         background-color: #2b2a56;
       }
 
+      #button-18 .checkbox:checked ~ .layer,
       #button-17 .checkbox:checked ~ .layer,
       #button-16 .checkbox:checked ~ .layer {
         background-color: #F2F1F8;
@@ -1428,12 +1463,20 @@
     <div id="control-container">
       <div>
           <div>
+
             <div class="button b2" id="button-16">
               <input type="checkbox" class="checkbox" />
               <div class="knobs"></div>
               <div class="layer"></div>
             </div>
+
             <div class="button b2" id="button-17">
+              <input type="checkbox" class="checkbox" />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+
+            <div class="button b2" id="button-18">
               <input type="checkbox" class="checkbox" />
               <div class="knobs"></div>
               <div class="layer"></div>
@@ -1596,7 +1639,7 @@
           "BHG Project Hub - Startup Bank.csv"
         ).then(function(data) {
           d3.csv(
-          "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vReNDA6nTsDbV3NW13RyfG8lu2kB2pZpEmd0GtD4EzfJD9FcIvqsEarzisQKQ_W26-YyZR7__KwyNfY/pub?gid=2012818018&single=true&output=csv"
+          "EduardoData - EngieRadar-Definitions.csv"
           ).then(function(desc) {
 
 
@@ -1631,6 +1674,7 @@
               spinner.stop();
               d3.select("#button-16").style("display", "block")
               d3.select("#button-17").style("display", "block")
+              d3.select("#button-18").style("display", "block")
               //d3.select(".dropdown-client").style("display", "inline-block")
               d3.select("#save-button").style("display", "block")
               d3.select(".chart-title").style("display", "")
@@ -4070,6 +4114,9 @@
                   eu = true
                   update_visibility()
                 }
+              });
+              d3.select("#button-18").on("change", function() {
+                setTimeout(function() { window.location = "https://rainmakinginnovation.github.io/BHGVenturesCompassV2/" }, 1000);
               });
   
             var CompetitorMode = 0;
